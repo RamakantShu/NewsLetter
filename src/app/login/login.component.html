@@ -1,0 +1,21 @@
+<form [formGroup]="angForm" (submit)="LoginUser($event)" novalidate>
+  <div class="col-md-5 col-md-offset-3 form-group">
+      <label>User Id</label>
+      <input type="text" class="form-control" formControlName="userName" [(ngModel)]="userName"/>
+      <span class="col-md-6 row" style="color:red;font-size:9px;">
+          <span *ngIf="!angForm.controls['userName'].valid && angForm.controls.userName.touched">User Id field is required</span>
+      </span>
+      
+      <br />
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password" [(ngModel)]="password" />
+      <span class="col-md-6 row" style="color:red;font-size:9px;" *ngIf="angForm.controls.password.touched">
+          <span *ngIf="!angForm.controls.password.valid">Password field is required</span>
+      </span>
+      <br />
+      <label class="text-danger">{{msg}}</label>
+      <br />
+
+      <input type="submit" value="Sign-in" [disabled]="!angForm.valid" class="btn btn-primary"/>
+   </div>
+</form>

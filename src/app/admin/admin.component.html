@@ -1,0 +1,39 @@
+<form [formGroup]="angForm" (submit)="SaveNewsContent($event)" novalidate>
+  <div class="col-md-5 col-md-offset-3 form-group">
+      <label>Title</label>
+      <input type="text" class="form-control" formControlName="title" [(ngModel)]="title"/>
+      <span class="col-md-6 row" style="color:red;font-size:9px;">
+          <span *ngIf="!angForm.controls['title'].valid && angForm.controls.title.touched">News title field is required</span>
+      </span>
+      
+      <br />
+      <label>News Content</label>
+      <!-- <input type="text" class="form-control" formControlName="newsContent" [(ngModel)]="newsContent" /> -->
+      <angular-editor formControlName="newsContent" [config]="editorConfig"></angular-editor>
+      <span class="col-md-6 row" style="color:red;font-size:9px;" *ngIf="angForm.controls.newsContent.touched">
+          <span *ngIf="!angForm.controls.newsContent.valid">News content field is required</span>
+      </span>
+
+      <br />
+      <label>News Profile Image</label>
+      <br>
+      <input #file type="file" 
+            formControlName="newsProfileImage" />
+      <!-- <button (click)="profileImage.click();" class="btn btn-info">Pick news profile image</button> -->
+      
+      <span class="col-md-6 row" style="color:red;font-size:9px;" *ngIf="angForm.controls.newsProfileImage.touched">
+          <span *ngIf="!angForm.controls.newsProfileImage.valid">News profile image field is required</span>
+      </span>
+      <span style="font-weight:bold;color:green;" *ngIf="progress > 0 && progress < 100">
+        {{progress}}%
+      </span>
+      <span style="font-weight:bold;color:green;" *ngIf="message">
+        {{message}}
+      </span>
+      <!-- <br />
+      <label class="text-danger">{{msg}}</label>
+      <br /> -->
+
+      <input type="submit" value="Save" [disabled]="!angForm.valid" class="btn btn-primary"/>
+   </div>
+</form>

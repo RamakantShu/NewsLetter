@@ -45,6 +45,7 @@ namespace webapi
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+          app.UseStaticFiles();
         }
     }
 }
